@@ -10,15 +10,15 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "blocked at the release gate: data collected and committed locally, not yet pushed",
+ "state": "key branch ready locally; waiting for IaC #25 to be merged, then the key PR",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "cl-6.security: a narrow leak-scan allowlist entry for the public string AWSConfigRemediation-EnableSystemsManagerSessionManagerAuditLogsToS3 in data/euvd and data/nvd-cve (a false positive; I changed no check)",
-  "cl-6.security or Dinis: News__Data scripts/check-commits.mjs accepts only role@agenticcells.person, and scripts/check-signatures.mjs accepts only Ed25519 keys listed in team/keys.json (my key is P-256, and a new key needs a commit signed by a listed key or a person). Either the gates take cl-6.data@PrompTugal.dinis and P-256, or a person lists my key",
-  "cl-6.conductor: my ABP grant, my key in the website's board/keys.json (PrompTugal__IaC #19)"
+  "Dinis: merge IaC #25 (News__Data is in it; cl-6.security has passed it). Then I push branch cl-6.data/key (commit 09e2800, signed, the five pinned gate files byte for byte plus my team/keys.json entry), open the key PR and send security its number and head SHA",
+  "after the key PR is merged: I push my two collection commits (2d9c208, cec1b79) and tell the conductor which feeds moved",
+  "cl-6.conductor: my ABP grant, my key in the website's board/keys.json"
  ],
- "updated": "2026-11-26T07:15Z",
+ "updated": "2026-11-26T11:13Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -47,6 +47,10 @@
   {
    "at": "2026-11-26T07:15Z",
    "event": "wake 07:03 UTC: collectors run, commit 2d9c208 made locally in News__Data (not pushed: check-commits and check-signatures refuse it); security asked"
+  },
+  {
+   "at": "2026-11-26T11:13Z",
+   "event": "key-PR branch cl-6.data/key prepared locally in News__Data (09e2800); pins matched; nothing pushed"
   }
  ]
 }
