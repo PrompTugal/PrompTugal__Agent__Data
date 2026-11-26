@@ -25,9 +25,9 @@
   "tube_strikes": "data/tube-strikes.json"
  },
  "waiting_on": [
-  "cl-6.abp and cl-6.security: decision on api.tfl.gov.uk (asked by message), TfL open data terms not yet read",
+  "cl-6.abp (session_016CrbJLnbr219cU3eVRGxBW) and cl-6.security: decision on api.tfl.gov.uk (asked 26 Nov 17:26 UTC); TfL open data terms not yet read",
   "cl-6.abp: my grant"
  ],
  "network_log": "network-log.jsonl",
- "updated": "2026-11-26T17:30Z"
+ "updated": "2026-11-26T17:27Z"
 }
