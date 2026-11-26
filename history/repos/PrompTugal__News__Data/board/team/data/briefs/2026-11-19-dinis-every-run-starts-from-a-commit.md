@@ -1,0 +1,49 @@
+# Every run starts from a commit; show the past (19 November 2026)
+
+Relayed by conductor.b@ and read at source in PrompTugal__News__Website board/guidance/ (2026-11-19-every-run-starts-from-a-commit.md and 2026-11-19-show-the-past.md) by data.b@PrompTugal.dinis at about 01:30 UTC.
+
+## Dinis's words
+
+About 01:20 UTC, in conductor.b@'s session:
+
+> "agree use your schedule for 'data.b@'s existing hourly wake collects and pushes the data itself.' to trigger and double check everything, since it is MUCH more reliable that GH"
+
+> "and I actually like the idea that all GH actions are triggered by a commit, since that leaves a clear provenance, determinism and explainabilty"
+
+About 01:22 UTC, on keeping what we forecast beside what happened:
+
+> "I love this ... and is something I always wanted to see on data driven sites, specially sites and data that try to predict what is going to happen"
+
+## What this session does
+
+- Each wake (hourly, :03 Lisbon, day and night; schedule changed by conductor.b@ at Dinis's word): run the collectors, commit what changed as a signed commit (never an empty one), push. The push builds and deploys.
+- data/ and the raw files the site serves are in git from commit 83b562f. The Pages workflow has no schedule and no collect step.
+- Every prediction this site serves is kept as issued and checked when its day comes; the list is in status.json under predictions.
+
+## No IP lookup, predictions in the library, small decisions (about 03:15 UTC)
+
+Relayed by conductor.b@ at 03:20 UTC; read at source in PrompTugal__News__Website board/guidance/2026-11-19-no-ip-lookup-predictions-and-small-decisions.md.
+
+> "Yeah, okay, remove the IP base. So we're going to keep the country still. I agree. The predictions are one collection, yeah. I'll add branch protection later. It's not a problem at the moment. ... For now, that's okay on cyber. ... We're not going to have a key. So for now, don't get the London observed temperature. Just make a list of the sources we could do later."
+
+What this session does: obs.js keeps the country only, from the browser's time zone through a fixed table, no lookup; prediction files go to library.b@ in the form it sets, and this site still keeps and checks its own; London's observed temperature is not read; branch protection is Dinis's, later.
+
+## Twice a day (about 16:30 UTC)
+
+Relayed by conductor.b@ at 16:35 UTC; read at source in PrompTugal__News__Website board/guidance/2026-11-19-twice-a-day.md (commit cc59020f1, 16:37 UTC) by data.b@PrompTugal.dinis at about 16:40 UTC.
+
+> "for now we could mainly keep the site up-to-date a couple times a day, since there is really nobody using the site, and we don't need hourly updates"
+
+He chose "Twice a day, all" over keeping data collection hourly.
+
+What this session does: the wake runs at 07:03 and 18:03 Lisbon (the schedule was moved by conductor.b@); each wake collects, commits and pushes as before. Every served file states a cadence of twice a day with stale_after_seconds of 46800 (13 hours, as the guidance asks), and keeps the source's own cadence as collected_as. A refused 6-hourly or daily source waits at least 4 hours, so it is tried again at the next wake.
+
+## Cameras as links (about 17:40 UTC)
+
+Relayed by conductor.b@ at 17:42 UTC; read at source in PrompTugal__News__Website board/guidance/2026-11-19-cameras-as-links-and-the-map.md (landed on dev by 17:48 UTC) by data.b@PrompTugal.dinis.
+
+> "And these are for the videos that we have full right to use."
+
+The rule, as recorded there: we embed or show in full only video and images we have full right to use (an open licence, or the owner's written permission, like London's open camera data); everything else is a credited link. MEO BeachCam's Algarve cameras come back as credited links; SkylineWebcams (Faro, Portimão marina) are links for now.
+
+What this session does: register/cams.json lists 19 MEO BeachCam cameras and 2 SkylineWebcams cameras as link_only, embed_allowed false, credit named, check false (neither host is fetched by code), with coordinates marked as the municipality's centre from Wikidata. Two MEO entries stay out of the list: one groups several beaches, one is a news article, not an MEO camera page.

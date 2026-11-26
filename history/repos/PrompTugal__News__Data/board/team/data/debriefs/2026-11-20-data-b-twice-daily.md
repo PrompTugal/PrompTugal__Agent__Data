@@ -1,0 +1,40 @@
+# data.b@PrompTugal.dinis: hand-over, 20 November 2026
+
+Written by data.b@PrompTugal.dinis for Dinis and whoever picks this up. Times are UTC from `date -u`.
+
+## Late evening, 19 November (20:55 to 20:59 UTC)
+
+rights@PrompTugal.dinis found (R13, Website 515da9e1d, read at source) that commercial.json listed Contracts Finder as ours (CC BY 4.0, PrompTugal.news). Fixed in 016c694: Open Government Licence v3.0, holder Crown copyright (Crown Commercial Service), commercial use allowed, and the statement "Contains public sector information licensed under the Open Government Licence v3.0." on the served file, the card and the source page. The source states the licence link as http; we serve the https link and keep the source's form beside it. rights@ was told.
+
+## Morning wake, 20 November (07:03 to 07:20 UTC)
+
+| What | Commit |
+|---|---|
+| Collection: 23 sources read. Open-Meteo answered again, so London's forecast is fresh. Refusals respected: GitHub search 403 (21 of 22), Bluesky search 403 (5 of 5). euvd and events-pt each had one robots.txt 404 (no rules), not a refusal. 54 predictions added, no outcomes yet | cb88d7b |
+| Event claims that ended on 19 Nov moved to past (new past files for castro-marim and portimao). My commit routine had been resetting discovery/ after each run, so no claim had moved since 19 Nov 01:21 UTC; the routine now adds discovery/ instead | 8a43379 |
+
+Slip, owned: the reset of discovery/ in my commit routine dropped the claims step's output for about 30 hours. Nothing was lost for good: the claims step rebuilds from the stored discovery answers, and it was rerun and committed.
+
+Gaps now: Bluesky search 403; GitHub search 403. Open-Meteo is off the gap list for now.
+
+Next: the first IPMA forecast outcomes once 20 November has been measured (the 18:03 Lisbon wake or the next morning), then the track record page; security@'s review of nvd-kev.
+
+Waiting on Dinis: whether to read EPSS; the raw-history vault's secrets; branch protection on dev with verify required, a tag ruleset, and a github-pages environment limited to dev.
+
+## Contracts Finder empty read (09:50 to 09:53 UTC)
+
+civic.b@ (relayed by conductor.b@ at 09:50 UTC) reported the 07:04 UTC read showing 0 notices marked complete. Every window had answered 200 with the same 1,387-byte empty package; at 09:50 UTC the same query form answered 47 notices for 19 Nov 07:00 to 11:00. So the gap was at the source. An all-empty read is now marked complete: false, empty_read: true, with a plain note; re-read at 09:51 UTC: 109 notices, 15 from London (9fc42ec).
+
+## Evening wake (18:03 to 18:10 UTC)
+
+Collection: 22 sources read (nvd-kev is daily and not due). Open-Meteo answered again. Contracts Finder answered normally: 116 notices, 17 from 15 London buyers. Refusals respected as in the morning: GitHub search 403 (21 of 22), Bluesky search 403 (5 of 5); euvd and events-pt one robots.txt 404 each. 54 predictions added, no outcomes yet: 20 November's observations are complete only after the day ends, so the first outcomes come at the 21 Nov morning wake.
+
+Waiting on Dinis: as in the morning.
+
+## Requests from civic.b@ and events.b@ (20:52 to 21:00 UTC, relayed by conductor.b@)
+
+| What | Commit |
+|---|---|
+| London contracts kept by day at /api/v1/contracts-finder/by-day/ (one entry per notice, never deleted; seeded from the reads kept in git since 19 Nov 19:30 UTC). The locality rule stays: a London locality counts even with a postcode outside London, such as HMRC's non-geographic SS99; the file says so | bcc14b5 |
+| Rolling event starts marked at source: rolling: true on a start change where the source shows a running event as starting on the day it is read; 154 of 166 start changes in the stored history | bcc14b5 |
+| The by-day files carry read_at, so the served files show when they were read | this commit |
