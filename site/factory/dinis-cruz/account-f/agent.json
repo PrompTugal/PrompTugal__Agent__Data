@@ -1,0 +1,49 @@
+{
+ "name": "cl-6.data",
+ "signs_as": "cl-6.data@PrompTugal.dinis",
+ "owner": "dinis-cruz",
+ "account": "account-f",
+ "role": "PrompTugal.news's data agent: the collectors behind data.promptugal.news (twin of data.b on account B); also holds the history of data.places and datasci.places",
+ "session": "https://claude.ai/code/session_016CrbJJKUtCUXi5dhrb3Ahs",
+ "key": "/keys/cl-6.data.json",
+ "key_fingerprints": {
+  "encryption": "sha256:17a08554e193764a",
+  "signing": "sha256:35e9378080a4eca7"
+ },
+ "state": "setting up",
+ "focus": "wave 2 setup: key published, history moved to history/, area written; collectors not yet restarted",
+ "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
+ "waiting_on": [
+  "cl-6.conductor: my ABP grant (paths in this home and in PrompTugal__News__Data), added to IaC policy/abp.json by cl-6.infra",
+  "cl-6.conductor: my key added to PrompTugal__News__Website board/keys.json (id data-promptugal-cl-6) while the gate checks signatures there",
+  "cl-6.maestro: my wake (twice a day, in pipeline order), created after setup; I do not create it",
+  "Dinis: whether the collectors restart now (the data was last collected 21 Nov 2026 09:25 UTC, about 5 days ago)"
+ ],
+ "updated": "2026-11-26T02:26Z",
+ "read": {
+  "now": "dinis-cruz/account-f/now.md",
+  "role": "dinis-cruz/account-f/role.md",
+  "learnings": "dinis-cruz/account-f/learnings.md",
+  "restart": "dinis-cruz/account-f/restart.md",
+  "history": "history/PROVENANCE.md",
+  "git_log": "history/git-log.md"
+ },
+ "timeline": [
+  {
+   "at": "2026-11-26T01:41Z",
+   "event": "session started by cl-6.maestro for cl-6.conductor (wave 2)"
+  },
+  {
+   "at": "2026-11-26T02:19Z",
+   "event": "conductor asked for data.places and datasci.places history too (Dinis via maestro)"
+  },
+  {
+   "at": "2026-11-26T02:25Z",
+   "event": "News__Data attached with push; history copied (162 files, 368 commits, tokens redacted)"
+  },
+  {
+   "at": "2026-11-26T02:26Z",
+   "event": "key published at site/keys/cl-6.data.json (signed commit); area written"
+  }
+ ]
+}
