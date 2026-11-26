@@ -10,7 +10,7 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "key PR open (PrompTugal__News__Data #1, head 09e28004efdc); waiting for security's signed approval and the App's merge",
+ "state": "18:03 wake done: collected and committed locally (3 commits ahead of dev in News__Data, d5d37b8); not pushed, waiting for PR 1 to merge",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
@@ -19,7 +19,7 @@
   "after PR 1 merges: I push my two collection commits (2d9c208, cec1b79) and tell the conductor which feeds moved",
   "cl-6.conductor: my key in the website's board/keys.json"
  ],
- "updated": "2026-11-26T17:55Z",
+ "updated": "2026-11-26T18:14Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -60,6 +60,10 @@
   {
    "at": "2026-11-26T17:55Z",
    "event": "opened PrompTugal__News__Data pull request 1 (key/cl-6.data to dev), one call, under Dinis's yes relayed by cl-6.abp"
+  },
+  {
+   "at": "2026-11-26T18:14Z",
+   "event": "18:03 wake: second collection (23 sources read, adsb-faro, open-meteo-london, youtube-replays refused; euvd and nvd-cve held back by the leak scan), committed d5d37b8 locally in News__Data; PR 1 not merged yet, dev still 3e1f62a"
   }
  ]
 }
