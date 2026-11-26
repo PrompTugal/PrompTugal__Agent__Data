@@ -1,0 +1,256 @@
+{
+ "title": "London boroughs and population, mid-2025",
+ "read_at_utc": "2026-11-26",
+ "agent": "cl-6.data.london@PrompTugal.dinis",
+ "sources": [
+  {
+   "url": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/estimatesofthepopulationforenglandandwales",
+   "file": "https://www.ons.gov.uk/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/estimatesofthepopulationforenglandandwales/mid20252023localauthorityboundaries/mye25tablesew.xlsx",
+   "table": "MYE4",
+   "publisher": "Office for National Statistics",
+   "published": "29 July 2026",
+   "read": "2026-11-26"
+  }
+ ],
+ "note": "Borough list comes from ONS local authority codes (E09), not London Councils: www.londoncouncils.gov.uk answered 403 to every request on 26 Nov 2026. Population is the ONS mid-year estimate for usual residents, England and Wales boundaries as of 2023/2024.",
+ "london_region": {
+  "code": "E12000007",
+  "name": "LONDON",
+  "population_mid_2025": 9122909,
+  "population_mid_2024": 9149646
+ },
+ "count": 33,
+ "boroughs": [
+  {
+   "code": "E09000002",
+   "name": "Barking and Dagenham",
+   "geography": "London Borough",
+   "population_mid_2025": 238295,
+   "population_mid_2024": 234866
+  },
+  {
+   "code": "E09000003",
+   "name": "Barnet",
+   "geography": "London Borough",
+   "population_mid_2025": 408087,
+   "population_mid_2024": 406198
+  },
+  {
+   "code": "E09000004",
+   "name": "Bexley",
+   "geography": "London Borough",
+   "population_mid_2025": 257103,
+   "population_mid_2024": 256288
+  },
+  {
+   "code": "E09000005",
+   "name": "Brent",
+   "geography": "London Borough",
+   "population_mid_2025": 352201,
+   "population_mid_2024": 355398
+  },
+  {
+   "code": "E09000006",
+   "name": "Bromley",
+   "geography": "London Borough",
+   "population_mid_2025": 336048,
+   "population_mid_2024": 334641
+  },
+  {
+   "code": "E09000007",
+   "name": "Camden",
+   "geography": "London Borough",
+   "population_mid_2025": 216658,
+   "population_mid_2024": 220558
+  },
+  {
+   "code": "E09000001",
+   "name": "City of London",
+   "geography": "London Borough",
+   "population_mid_2025": 15631,
+   "population_mid_2024": 15497
+  },
+  {
+   "code": "E09000008",
+   "name": "Croydon",
+   "geography": "London Borough",
+   "population_mid_2025": 410085,
+   "population_mid_2024": 408636
+  },
+  {
+   "code": "E09000009",
+   "name": "Ealing",
+   "geography": "London Borough",
+   "population_mid_2025": 387072,
+   "population_mid_2024": 387680
+  },
+  {
+   "code": "E09000010",
+   "name": "Enfield",
+   "geography": "London Borough",
+   "population_mid_2025": 329400,
+   "population_mid_2024": 331421
+  },
+  {
+   "code": "E09000011",
+   "name": "Greenwich",
+   "geography": "London Borough",
+   "population_mid_2025": 301225,
+   "population_mid_2024": 301259
+  },
+  {
+   "code": "E09000012",
+   "name": "Hackney",
+   "geography": "London Borough",
+   "population_mid_2025": 266241,
+   "population_mid_2024": 268651
+  },
+  {
+   "code": "E09000013",
+   "name": "Hammersmith and Fulham",
+   "geography": "London Borough",
+   "population_mid_2025": 190216,
+   "population_mid_2024": 190803
+  },
+  {
+   "code": "E09000014",
+   "name": "Haringey",
+   "geography": "London Borough",
+   "population_mid_2025": 266218,
+   "population_mid_2024": 268524
+  },
+  {
+   "code": "E09000015",
+   "name": "Harrow",
+   "geography": "London Borough",
+   "population_mid_2025": 272612,
+   "population_mid_2024": 270987
+  },
+  {
+   "code": "E09000016",
+   "name": "Havering",
+   "geography": "London Borough",
+   "population_mid_2025": 280787,
+   "population_mid_2024": 277042
+  },
+  {
+   "code": "E09000017",
+   "name": "Hillingdon",
+   "geography": "London Borough",
+   "population_mid_2025": 326671,
+   "population_mid_2024": 327886
+  },
+  {
+   "code": "E09000018",
+   "name": "Hounslow",
+   "geography": "London Borough",
+   "population_mid_2025": 299486,
+   "population_mid_2024": 300047
+  },
+  {
+   "code": "E09000019",
+   "name": "Islington",
+   "geography": "London Borough",
+   "population_mid_2025": 224551,
+   "population_mid_2024": 226183
+  },
+  {
+   "code": "E09000020",
+   "name": "Kensington and Chelsea",
+   "geography": "London Borough",
+   "population_mid_2025": 145734,
+   "population_mid_2024": 147255
+  },
+  {
+   "code": "E09000021",
+   "name": "Kingston upon Thames",
+   "geography": "London Borough",
+   "population_mid_2025": 172761,
+   "population_mid_2024": 172964
+  },
+  {
+   "code": "E09000022",
+   "name": "Lambeth",
+   "geography": "London Borough",
+   "population_mid_2025": 314298,
+   "population_mid_2024": 318864
+  },
+  {
+   "code": "E09000023",
+   "name": "Lewisham",
+   "geography": "London Borough",
+   "population_mid_2025": 301037,
+   "population_mid_2024": 302432
+  },
+  {
+   "code": "E09000024",
+   "name": "Merton",
+   "geography": "London Borough",
+   "population_mid_2025": 218891,
+   "population_mid_2024": 220020
+  },
+  {
+   "code": "E09000025",
+   "name": "Newham",
+   "geography": "London Borough",
+   "population_mid_2025": 376542,
+   "population_mid_2024": 379479
+  },
+  {
+   "code": "E09000026",
+   "name": "Redbridge",
+   "geography": "London Borough",
+   "population_mid_2025": 321829,
+   "population_mid_2024": 323006
+  },
+  {
+   "code": "E09000027",
+   "name": "Richmond upon Thames",
+   "geography": "London Borough",
+   "population_mid_2025": 196713,
+   "population_mid_2024": 196975
+  },
+  {
+   "code": "E09000028",
+   "name": "Southwark",
+   "geography": "London Borough",
+   "population_mid_2025": 312366,
+   "population_mid_2024": 317058
+  },
+  {
+   "code": "E09000029",
+   "name": "Sutton",
+   "geography": "London Borough",
+   "population_mid_2025": 213972,
+   "population_mid_2024": 213672
+  },
+  {
+   "code": "E09000030",
+   "name": "Tower Hamlets",
+   "geography": "London Borough",
+   "population_mid_2025": 334240,
+   "population_mid_2024": 336153
+  },
+  {
+   "code": "E09000031",
+   "name": "Waltham Forest",
+   "geography": "London Borough",
+   "population_mid_2025": 283713,
+   "population_mid_2024": 283782
+  },
+  {
+   "code": "E09000032",
+   "name": "Wandsworth",
+   "geography": "London Borough",
+   "population_mid_2025": 339859,
+   "population_mid_2024": 339727
+  },
+  {
+   "code": "E09000033",
+   "name": "Westminster",
+   "geography": "London Borough",
+   "population_mid_2025": 212367,
+   "population_mid_2024": 215694
+  }
+ ]
+}

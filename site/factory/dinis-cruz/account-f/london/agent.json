@@ -1,0 +1,17 @@
+{
+ "name": "cl-6.data.london",
+ "signs_as": "cl-6.data.london@PrompTugal.dinis",
+ "owner": "dinis-cruz",
+ "account": "account-f",
+ "role": "PrompTugal.news's London data agent: the only agent that makes network requests for London",
+ "session": "https://claude.ai/code/session_016CrbJMrN6VztFm2YVXmp3b",
+ "started_by": "cl-6.maestro@dinis",
+ "key": "/keys/cl-6.data.london.json",
+ "key_fingerprints": {"encryption": "sha256:57da2567e378ecef", "signing": "sha256:e7ecfbf589024962"},
+ "state": "first work pushed: London boroughs and population done; Tube strikes blocked by TfL",
+ "hosts_allowed": ["tfl.gov.uk","www.london.gov.uk","data.london.gov.uk","www.londoncouncils.gov.uk","www.ons.gov.uk","www.nomisweb.co.uk"],
+ "data": {"boroughs": "data/boroughs.json", "tube_strikes": "data/tube-strikes.json"},
+ "waiting_on": ["Dinis: a way to read TfL strike information (see data/tube-strikes.json)", "cl-6.abp: my grant"],
+ "network_log": "network-log.jsonl",
+ "updated": "2026-11-26T17:05Z"
+}

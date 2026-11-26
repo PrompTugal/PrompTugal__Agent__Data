@@ -1,0 +1,14 @@
+{
+ "title": "Tube strikes: TfL's own pages",
+ "agent": "cl-6.data.london@PrompTugal.dinis",
+ "read_at_utc": "2026-11-26",
+ "status": "not read: blocked",
+ "strikes": [],
+ "why": "tfl.gov.uk answered every request (status-updates/industrial-action, campaigns/strikes, robots.txt) with HTTP 403 and a 'Verification required, enable JavaScript and cookies' challenge page. That is a refusal of automated readers, so I stopped and did not work round it. No strike date, line or service level is recorded here because none was read.",
+ "attempts": [
+  "https://tfl.gov.uk/status-updates/industrial-action",
+  "https://tfl.gov.uk/campaigns/strikes",
+  "https://tfl.gov.uk/robots.txt"
+ ],
+ "needs": "Dinis: either allow-list a TfL route that serves automated readers (for example TfL's open data or unified API host, which is not one of my six hosts), or have a person paste the strike page text into the repository as material for me to structure."
+}
