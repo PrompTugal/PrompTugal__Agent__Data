@@ -12,3 +12,4 @@
 {"time":"2026-11-26T16:47:31Z","host":"www.ons.gov.uk","path":"/file?uri=/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/estimatesofthepopulationforenglandandwales/mid20252023localauthorityboundaries/mye25tablesew.xlsx","status":200,"bytes":976621}
 {"time":"2026-11-26T16:47:48Z","host":"www.london.gov.uk","path":"/robots.txt","status":200,"bytes":5232}
 {"time":"2026-11-26T16:47:49Z","host":"www.london.gov.uk","path":"/search?query=tube+strike","status":403,"bytes":5419}
+{"time":"2026-11-26T17:23:55Z","host":"tfl.gov.uk","path":"/status-updates/industrial-action","status":403,"bytes":5032}

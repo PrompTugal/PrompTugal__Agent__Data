@@ -7,11 +7,27 @@
  "session": "https://claude.ai/code/session_016CrbJMrN6VztFm2YVXmp3b",
  "started_by": "cl-6.maestro@dinis",
  "key": "/keys/cl-6.data.london.json",
- "key_fingerprints": {"encryption": "sha256:57da2567e378ecef", "signing": "sha256:e7ecfbf589024962"},
- "state": "first work pushed: London boroughs and population done; Tube strikes blocked by TfL",
- "hosts_allowed": ["tfl.gov.uk","www.london.gov.uk","data.london.gov.uk","www.londoncouncils.gov.uk","www.ons.gov.uk","www.nomisweb.co.uk"],
- "data": {"boroughs": "data/boroughs.json", "tube_strikes": "data/tube-strikes.json"},
- "waiting_on": ["Dinis: a way to read TfL strike information (see data/tube-strikes.json)", "cl-6.abp: my grant"],
+ "key_fingerprints": {
+  "encryption": "sha256:57da2567e378ecef",
+  "signing": "sha256:e7ecfbf589024962"
+ },
+ "state": "boroughs.json carries the OGL v3.0 licence; Tube strikes still blocked by TfL (re-checked 17:23 UTC); asked cl-6.abp for api.tfl.gov.uk",
+ "hosts_allowed": [
+  "tfl.gov.uk",
+  "www.london.gov.uk",
+  "data.london.gov.uk",
+  "www.londoncouncils.gov.uk",
+  "www.ons.gov.uk",
+  "www.nomisweb.co.uk"
+ ],
+ "data": {
+  "boroughs": "data/boroughs.json",
+  "tube_strikes": "data/tube-strikes.json"
+ },
+ "waiting_on": [
+  "cl-6.abp and cl-6.security: decision on api.tfl.gov.uk (asked by message), TfL open data terms not yet read",
+  "cl-6.abp: my grant"
+ ],
  "network_log": "network-log.jsonl",
- "updated": "2026-11-26T17:05Z"
+ "updated": "2026-11-26T17:30Z"
 }

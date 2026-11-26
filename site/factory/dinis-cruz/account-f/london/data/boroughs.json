@@ -9,7 +9,14 @@
    "table": "MYE4",
    "publisher": "Office for National Statistics",
    "published": "29 July 2026",
-   "read": "2026-11-26"
+   "read": "2026-11-26",
+   "licence": {
+    "name": "Open Government Licence v3.0",
+    "link": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+    "stated_on": "https://www.ons.gov.uk/peoplepopulationandcommunity/populationandmigration/populationestimates/datasets/estimatesofthepopulationforenglandandwales",
+    "stated_as": "ONS page footer: 'All content is available under the Open Government Licence v3.0, except where otherwise stated'; dataset metadata license field gives the same link",
+    "read": "2026-11-26"
+   }
   }
  ],
  "note": "Borough list comes from ONS local authority codes (E09), not London Councils: www.londoncouncils.gov.uk answered 403 to every request on 26 Nov 2026. Population is the ONS mid-year estimate for usual residents, England and Wales boundaries as of 2023/2024.",
@@ -252,5 +259,6 @@
    "population_mid_2025": 212367,
    "population_mid_2024": 215694
   }
- ]
+ ],
+ "attribution": "Contains public sector information licensed under the Open Government Licence v3.0. Source: Office for National Statistics."
 }
