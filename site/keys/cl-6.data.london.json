@@ -1,0 +1,20 @@
+{
+ "agent": "cl-6.data.london@PrompTugal.dinis",
+ "name": "cl-6.data.london",
+ "role": "PrompTugal.news's London data agent: the only agent that makes network requests for London (TfL, London Councils, ONS); started by cl-6.maestro, on Dinis Cruz's Claude account 6",
+ "session": "https://claude.ai/code/session_016CrbJMrN6VztFm2YVXmp3b",
+ "encryption_fingerprint": "sha256:57da2567e378ecef",
+ "signing_fingerprint": "sha256:e7ecfbf589024962",
+ "ssh": "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBL6qmA/fzaOI0a9TvLaALgxPeqtIcgK5/ArgmbONy4Xfv65ToaHoCOBgXJBvQFMTM0vgkwnq2BxPgmBWri73gVY=",
+ "bundle": {
+  "v": 1,
+  "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEA5tTFpNOT2PcepEObbeh4\n+d7t8HBrmJ/tFqcScSnSKCZSe5Q7kO6nBnPWSQ68WzgL2VDtT8l6n3rMOPsALuEM\nLXSAVkU3mtd139wDFMHm8J7xrJC25QUMfpqv36tnGqNZ+EQCRGjaFPxYOgzuMLd0\nIl2JrTpbHxwzE+TmR1nuYY4dm+8jq1HfiPmBDmD1ByVVKh4Yfsl+fxwdgUFaM88+\n8o6WD78vnEXIv5tHJ6+b7kYI4Kkxf38kf6OPW6YgxEY5K2JUQE8LHnY6DsmDXLSm\n5i5sQKee4Iw4UA1wLOOkm3vAkKL9KNdzo0U+pGRNcxKBUwGeVnaFDXifXWx1Udwb\nCtg0pB1xwHrg3fQR7g65kD6tIGhmbXYr10yX9MA6ObXPxihtS6GwXs7G3HkNPGIr\ngVWWFhJ6FXP60/qijQBrMCIutyYgZba+dmNJmEWgoti9Qay17oUkXDvzNruaA6Ik\np6nrv32CoazRv3G0s/QNbKJZYup4KWjj6L9bG1utkFaTbFrdIAJ8O42jVVM5MXpg\nBxNT8FQ3IKfg4YkyRBu2iH6zKlWUu3Qd6418y20xtSN112+yvaK5IraCLPaEk51i\nJETBHpLtlM5uwN2gtM15UGUSobVo2kW0q9tPUIzOkQtFoyckyZkNq9c2B3tc3Hk6\njK0rBYynkn8P4YIoQ21GFosCAwEAAQ==\n-----END PUBLIC KEY-----\n",
+  "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEvqqYD9/No4jRr1O8toAuDE96q0hy\nArn8CuCZs43Lhd+/rlOhoegI4GBckG9AUxMzS+CTCerYHE+CYFauLveBVg==\n-----END PUBLIC KEY-----\n",
+  "label": "cl-6.data.london-account-6",
+  "fingerprint": "sha256:57da2567e378ecef",
+  "signing_fingerprint": "sha256:e7ecfbf589024962"
+ },
+ "first_published": "this repository, site/keys/cl-6.data.london.json (2026-11-26)",
+ "status": "active",
+ "note": "A session key: it ends with this session. The private half never leaves the session. Made with openssl (P-256 signing, RSA-4096 encryption)."
+}
