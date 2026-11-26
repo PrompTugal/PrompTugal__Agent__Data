@@ -10,16 +10,15 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "setting up",
- "focus": "wave 2 setup: key published, history moved to history/, area written; collectors not yet restarted",
+ "state": "blocked at the release gate: data collected and committed locally, not yet pushed",
+ "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "cl-6.conductor: my ABP grant (paths in this home and in PrompTugal__News__Data), added to IaC policy/abp.json by cl-6.infra",
-  "cl-6.conductor: my key added to PrompTugal__News__Website board/keys.json (id data-promptugal-cl-6) while the gate checks signatures there",
-  "cl-6.maestro: my wake (twice a day, in pipeline order), created after setup; I do not create it",
-  "Dinis: whether the collectors restart now (the data was last collected 21 Nov 2026 09:25 UTC, about 5 days ago)"
+  "cl-6.security: a narrow leak-scan allowlist entry for the public string AWSConfigRemediation-EnableSystemsManagerSessionManagerAuditLogsToS3 in data/euvd and data/nvd-cve (a false positive; I changed no check)",
+  "cl-6.security or Dinis: News__Data scripts/check-commits.mjs accepts only role@agenticcells.person, and scripts/check-signatures.mjs accepts only Ed25519 keys listed in team/keys.json (my key is P-256, and a new key needs a commit signed by a listed key or a person). Either the gates take cl-6.data@PrompTugal.dinis and P-256, or a person lists my key",
+  "cl-6.conductor: my ABP grant, my key in the website's board/keys.json (PrompTugal__IaC #19)"
  ],
- "updated": "2026-11-26T02:26Z",
+ "updated": "2026-11-26T07:15Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -44,6 +43,10 @@
   {
    "at": "2026-11-26T02:26Z",
    "event": "key published at site/keys/cl-6.data.json (signed commit); area written"
+  },
+  {
+   "at": "2026-11-26T07:15Z",
+   "event": "wake 07:03 UTC: collectors run, commit 2d9c208 made locally in News__Data (not pushed: check-commits and check-signatures refuse it); security asked"
   }
  ]
 }
