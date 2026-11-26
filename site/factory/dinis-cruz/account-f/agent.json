@@ -10,16 +10,16 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "key branch ready locally; waiting for IaC #25 to be merged, then the key PR",
+ "state": "key branch pushed (key/cl-6.data, head 09e28004efdc6cfb373e71e8457ef424b0fa350b); waiting for security's signed approval and the App's PR and merge",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "Dinis (R5, R7): my ABP lets me push only to dev and open no pull request. The key PR for News__Data needs a branch push and a PR; either grant me both once IaC #25 is merged, or a person pushes branch cl-6.data/key (commit 09e2800 in my News__Data clone, to be re-made from the pinned files in gates/news-data/) and opens the PR",
-  "Dinis: merge IaC #25 (News__Data is in it; cl-6.security has passed it). Then I push branch cl-6.data/key (commit 09e2800, signed, the five pinned gate files byte for byte plus my team/keys.json entry), open the key PR and send security its number and head SHA",
-  "after the key PR is merged: I push my two collection commits (2d9c208, cec1b79) and tell the conductor which feeds moved",
-  "cl-6.conductor: my ABP grant, my key in the website's board/keys.json"
+  "cl-6.security: signed approval of head 09e28004efdc6cfb373e71e8457ef424b0fa350b (a later push voids it, so I will not push again)",
+  "the App: opens the PR from key/cl-6.data to dev, merges after the approval",
+  "after the key PR merges: I push my two collection commits (2d9c208, cec1b79) and tell the conductor which feeds moved",
+  "cl-6.conductor: my key in the website's board/keys.json"
  ],
- "updated": "2026-11-26T11:20Z",
+ "updated": "2026-11-26T17:38Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -52,6 +52,10 @@
   {
    "at": "2026-11-26T11:13Z",
    "event": "key-PR branch cl-6.data/key prepared locally in News__Data (09e2800); pins matched; nothing pushed"
+  },
+  {
+   "at": "2026-11-26T17:38Z",
+   "event": "pushed key/cl-6.data (head 09e28004efdc6cfb373e71e8457ef424b0fa350b) to PrompTugal__News__Data once, no force, no PR, under P9"
   }
  ]
 }
