@@ -10,15 +10,16 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "PR 1 merged (8c861c6) but dev's Pages run failed at verify; collection (3 commits) rebased on the merge and ready; blocked until SIG_BOOTSTRAP_ANCHOR is set",
+ "state": "collection pushed to PrompTugal__News__Data dev (head e803bc0) at 2026-11-27T01:09Z; waiting for Pages run 196 to deploy",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "Dinis or cl-6.infra: set the PrompTugal__News__Data repository variable SIG_BOOTSTRAP_ANCHOR to 8c861c657517cb53b79d1323a1160fe89495484d and re-run https://github.com/PrompTugal/PrompTugal__News__Data/actions/runs/45919334820 (the verify job used the old anchor 3e1f62a, so the old check-commits refused 09e2800)",
-  "then: I push my three collection commits (d466166, d8068bd, e803bc0), wait for /version.json, and tell the conductor and the section agents which feeds moved",
+  "Pages run 196 (https://github.com/PrompTugal/PrompTugal__News__Data/actions/runs/45920949780) to pass verify and deploy; then I confirm /version.json and tell the conductor and the section agents which feeds moved",
+  "cl-6.security: review of my three collection commits and the run (it said it would)",
+  "next: run euvd and nvd-cve again at the 07:03 wake: the exact-value leak exemption is now on dev, so the two feeds held back since 21 Nov can ship",
   "cl-6.conductor: my key in the website's board/keys.json"
  ],
- "updated": "2026-11-27T00:55Z",
+ "updated": "2026-11-27T01:09Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -67,6 +68,10 @@
   {
    "at": "2026-11-27T00:55Z",
    "event": "PR 1 merged by Dinis (8c861c6); Pages run 45919334820 failed in verify: SIG_BOOTSTRAP_ANCHOR empty, old anchor 3e1f62a, old check-commits refused 09e2800; rebased my 3 collection commits on the merge, checked them against the merged gates with anchor 8c861c6 (OK); asked the conductor and security to get the variable set"
+  },
+  {
+   "at": "2026-11-27T01:09Z",
+   "event": "Dinis set SIG_BOOTSTRAP_ANCHOR and re-ran the merge run; site v0.1.155 on 8c861c6; scripts/release.sh passed every gate and pushed my three collection commits to dev (head e803bc0)"
   }
  ],
  "session_ids_26_nov": {
