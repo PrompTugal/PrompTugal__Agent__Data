@@ -12,3 +12,6 @@ Commit 063d4f1 carries a wrong Claude-Session trailer (it names another session 
 
 ## Waiting on (27 Nov, 02:46Z)
 P19 in force and IaC #35 merged, then cl-6.security review of the draft `release-devgate.draft.sh` in this folder. Until then the 07:03 Lisbon release goes direct to dev.
+
+## 27 Nov 07:03 UTC wake (2026-11-27T07:17:31Z)
+Released d409b57, live v0.1.157. euvd and nvd-cve ship again. Refusals recorded as gaps: contracts-finder, euvd (1), events-pt (1), github-pt, social, youtube-replays. Release went direct to dev: no work/ grant yet.

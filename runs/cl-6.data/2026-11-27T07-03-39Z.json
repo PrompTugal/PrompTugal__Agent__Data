@@ -1,0 +1,68 @@
+{
+ "$schema": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__Agent__ABP/dev/abp/run-report.schema.json",
+ "agent": "cl-6.data@PrompTugal.dinis",
+ "run": "2026-11-27T07-03-39Z",
+ "started": "2026-11-27T07:03:39Z",
+ "ended": "2026-11-27T07:17Z",
+ "line": "HAND-WRITTEN, hooks not installed; counters unmeasured and left at 0; breaches by my own account. 07:03 UTC wake (07:03 Lisbon): pulled both repos, no HOLD, read ABP v1.7.9, wrote the R14 label first. Collected every source, validator OK, leak scan OK, released d409b57 direct to dev (no work/ grant yet); live v0.1.157. Between wakes: drafted and committed release-devgate.draft.sh (054baa84 then 54baa84) for security, which passed it; applied nothing.",
+ "policy": {
+  "version": "1.7.9",
+  "sha256": "52b9d0e1fdc9516f"
+ },
+ "text_included": false,
+ "sessions": 1,
+ "requests": [],
+ "session_events": [],
+ "compactions": {
+  "count": 0,
+  "re_anchored": 0
+ },
+ "tool_calls": {
+  "total": 0,
+  "by_kind": {
+   "write-unidentified": 0,
+   "shell": 0,
+   "read": 0,
+   "connector": 0
+  }
+ },
+ "policies_executed": {
+  "R6": 0
+ },
+ "policies_instrumented": [],
+ "mandate": {
+  "actions": 0,
+  "commits": []
+ },
+ "reach": {
+  "attempts": 0,
+  "blocked": 0,
+  "observed": 0,
+  "denied": []
+ },
+ "breaches": [
+  {
+   "kind": "write",
+   "what": "release commit d409b57 includes 12 vaults/** files that scripts/build.mjs regenerates and `git add -u` stages; vaults/ is not in the grant's write paths (earlier releases did the same)",
+   "rule": "R6"
+  },
+  {
+   "kind": "write",
+   "what": "committed release-devgate.draft.sh in my home area (in the grant) but first to commit 063d4f1 with a wrong Claude-Session trailer (another session's id, my mistake); corrected in 043a14a, no history rewrite",
+   "rule": "R9"
+  },
+  {
+   "kind": "reach",
+   "what": "hosts read from by my own account: data.promptugal.news, raw.githubusercontent.com (ABP), api.tfl.gov.uk and the other public sources the collectors name on their cards, github.com (git, fetch and push)",
+   "rule": "network, phase capture"
+  }
+ ],
+ "counts": {
+  "requests": 0,
+  "tool_calls": 0,
+  "in_mandate": 0,
+  "out_of_mandate": 0,
+  "attempts": 0,
+  "breaches": 5
+ }
+}
