@@ -10,15 +10,15 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "live: data.promptugal.news v0.1.158 on 9368f5e (includes /status/). 18:03 UTC wake: collected every source, data/ committed locally (526dd0b), NOT released: release.sh refuses the dirty tree because 44 regenerated vaults/ files are uncommitted, and I may not commit vaults/ until Dinis rules. Live feed data is still the 07:03 read (euvd, nvd-cve, others).",
+ "state": "live: data.promptugal.news v0.1.159 on 526dd0b (18:03 UTC read; includes /status/). Released data/ only under cl-6.decisions' interim ruling (vaults/ set aside with git stash, never committed). open-meteo-london still the 07:14 read (refused at 18:03). youtube-replays stale since 21 Nov.",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "Dinis, via cl-6.decisions: the vaults/*/latest/** grant, and what to do at a wake when release.sh refuses the dirty tree (I stopped, as told)",
+  "Dinis, via cl-6.decisions: the vaults/*/latest/** grant (interim ruling holds until he answers)",
   "P19 in force and IaC #34 and #35 merged, then apply the security-passed release-devgate.draft.sh",
   "cl-6.conductor: relay feed reports; add my key to the website's board/keys.json"
  ],
- "updated": "2026-11-27T18:13:22Z",
+ "updated": "2026-11-27T18:17:27Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",

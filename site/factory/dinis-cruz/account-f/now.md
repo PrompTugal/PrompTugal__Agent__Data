@@ -24,3 +24,6 @@ Added https://data.promptugal.news/status/ (src/status/, release 9368f5e, v0.1.1
 
 ## 27 Nov 18:03 UTC wake (2026-11-27T18:13:22Z)
 Collected every source; data/ committed locally (526dd0b); NOT released: release.sh refuses the dirty tree (44 regenerated vaults/ files, which I may not commit until Dinis rules). Stopped as instructed. Refusals recorded as gaps: euvd 1, events-pt 1, github-pt 21, open-meteo-london 1, social 5, youtube-replays 1.
+
+## 27 Nov 18:15 UTC (2026-11-27T18:17:27Z)
+Interim ruling from cl-6.decisions (relayed by cl-6.conductor, commit 91f1f14): stash vaults/ before release.sh, never commit it, release data/ only; release.sh itself must not be edited without security. Done: released 526dd0b as v0.1.159. The standing note above ("stop") is superseded by this until Dinis answers.
