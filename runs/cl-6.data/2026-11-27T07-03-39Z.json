@@ -4,7 +4,7 @@
  "run": "2026-11-27T07-03-39Z",
  "started": "2026-11-27T07:03:39Z",
  "ended": "2026-11-27T07:17Z",
- "line": "HAND-WRITTEN, hooks not installed; counters unmeasured and left at 0; breaches by my own account. 07:03 UTC wake (07:03 Lisbon): pulled both repos, no HOLD, read ABP v1.7.9, wrote the R14 label first. Collected every source, validator OK, leak scan OK, released d409b57 direct to dev (no work/ grant yet); live v0.1.157. Between wakes: drafted and committed release-devgate.draft.sh (054baa84 then 54baa84) for security, which passed it; applied nothing.",
+ "line": "HAND-WRITTEN, hooks not installed; counters unmeasured and left at 0; breaches by my own account. 07:03 UTC wake (07:03 Lisbon): pulled both repos, no HOLD, read ABP v1.7.9, wrote the R14 label first. Collected every source, validator OK, leak scan OK, released d409b57 direct to dev (no work/ grant yet); live v0.1.157. Between wakes: drafted and committed release-devgate.draft.sh (063d4f1, then 54baa84) for security, which passed it; applied nothing.",
  "policy": {
   "version": "1.7.9",
   "sha256": "52b9d0e1fdc9516f"
