@@ -21,3 +21,6 @@ Do NOT commit vaults/ until Dinis answers cl-6.decisions on the vaults/*/latest/
 
 ## Status page, 2026-11-27T15:24:14Z
 Added https://data.promptugal.news/status/ (src/status/, release 9368f5e, v0.1.158), at the session user's request. Reads /api/v1/index.json and each sibling site's version.json live in the browser. No script or workflow touched. The nav link to it in other pages needs a scripts/build/render.mjs change (gate path), not made.
+
+## 27 Nov 18:03 UTC wake (2026-11-27T18:13:22Z)
+Collected every source; data/ committed locally (526dd0b); NOT released: release.sh refuses the dirty tree (44 regenerated vaults/ files, which I may not commit until Dinis rules). Stopped as instructed. Refusals recorded as gaps: euvd 1, events-pt 1, github-pt 21, open-meteo-london 1, social 5, youtube-replays 1.
