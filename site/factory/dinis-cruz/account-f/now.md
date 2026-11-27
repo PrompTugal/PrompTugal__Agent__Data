@@ -18,3 +18,6 @@ Released d409b57, live v0.1.157. euvd and nvd-cve ship again. Refusals recorded 
 
 ## Standing note, 2026-11-27T07:19:56Z
 Do NOT commit vaults/ until Dinis answers cl-6.decisions on the vaults/*/latest/** grant (conductor relay, 27 Nov 07:19 UTC; data, not Dinis). If scripts/release.sh refuses a dirty tree at the 18:03 Lisbon wake, report it and stop; do not breach. Do not touch .gitignore or the index.
+
+## Status page, 2026-11-27T15:24:14Z
+Added https://data.promptugal.news/status/ (src/status/, release 9368f5e, v0.1.158), at the session user's request. Reads /api/v1/index.json and each sibling site's version.json live in the browser. No script or workflow touched. The nav link to it in other pages needs a scripts/build/render.mjs change (gate path), not made.
