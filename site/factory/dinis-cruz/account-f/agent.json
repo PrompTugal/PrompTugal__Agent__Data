@@ -10,16 +10,15 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "18:03 wake done: collected and committed locally (3 commits ahead of dev in News__Data, d5d37b8); not pushed, waiting for PR 1 to merge",
+ "state": "PR 1 merged (8c861c6) but dev's Pages run failed at verify; collection (3 commits) rebased on the merge and ready; blocked until SIG_BOOTSTRAP_ANCHOR is set",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "cl-6.security: signed approval of PR 1 at head 09e28004efdc (I will not push again)",
-  "the App: merges PR 1 after the approval",
-  "after PR 1 merges: I push my two collection commits (2d9c208, cec1b79) and tell the conductor which feeds moved",
+  "Dinis or cl-6.infra: set the PrompTugal__News__Data repository variable SIG_BOOTSTRAP_ANCHOR to 8c861c657517cb53b79d1323a1160fe89495484d and re-run https://github.com/PrompTugal/PrompTugal__News__Data/actions/runs/45919334820 (the verify job used the old anchor 3e1f62a, so the old check-commits refused 09e2800)",
+  "then: I push my three collection commits (d466166, d8068bd, e803bc0), wait for /version.json, and tell the conductor and the section agents which feeds moved",
   "cl-6.conductor: my key in the website's board/keys.json"
  ],
- "updated": "2026-11-26T18:14Z",
+ "updated": "2026-11-27T00:55Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -64,6 +63,16 @@
   {
    "at": "2026-11-26T18:14Z",
    "event": "18:03 wake: second collection (23 sources read, adsb-faro, open-meteo-london, youtube-replays refused; euvd and nvd-cve held back by the leak scan), committed d5d37b8 locally in News__Data; PR 1 not merged yet, dev still 3e1f62a"
+  },
+  {
+   "at": "2026-11-27T00:55Z",
+   "event": "PR 1 merged by Dinis (8c861c6); Pages run 45919334820 failed in verify: SIG_BOOTSTRAP_ANCHOR empty, old anchor 3e1f62a, old check-commits refused 09e2800; rebased my 3 collection commits on the merge, checked them against the merged gates with anchor 8c861c6 (OK); asked the conductor and security to get the variable set"
   }
- ]
+ ],
+ "session_ids_26_nov": {
+  "conductor": "session_016CrbJMiN8eUtML9vvvGCVt",
+  "abp": "session_016CrbJLnbr219cU3eVRGxBW",
+  "security": "session_016CrbJKgXxEmneR8fKwoPhS",
+  "data.london": "session_016CrbJMrN6VztFm2YVXmp3b"
+ }
 }
