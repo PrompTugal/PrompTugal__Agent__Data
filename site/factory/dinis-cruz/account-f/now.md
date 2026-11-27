@@ -6,3 +6,9 @@
 - **How it got here:** my key PR was merged by Dinis (8c861c6); the Pages run failed on the empty SIG_BOOTSTRAP_ANCHOR; Dinis set the variable and re-ran it; then release.sh pushed my three commits.
 - **Next wake 07:03 Lisbon:** re-read my grant, collect (euvd and nvd-cve included), release.
 - The iOS app: still no statement of what it reads from this site.
+
+## Correction, 2026-11-27T02:46:36Z
+Commit 063d4f1 carries a wrong Claude-Session trailer (it names another session by my mistake). My session is https://claude.ai/code/session_016CrbJJKUtCUXi5dhrb3Ahs. History is not rewritten.
+
+## Waiting on (27 Nov, 02:46Z)
+P19 in force and IaC #35 merged, then cl-6.security review of the draft `release-devgate.draft.sh` in this folder. Until then the 07:03 Lisbon release goes direct to dev.
