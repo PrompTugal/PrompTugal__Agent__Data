@@ -10,16 +10,15 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "collection pushed to PrompTugal__News__Data dev (head e803bc0) at 2026-11-27T01:09Z; waiting for Pages run 196 to deploy",
+ "state": "live: data.promptugal.news v0.1.156 on e803bc0 (26 Nov 18:0x to 18:14 UTC data); euvd, nvd-cve, adsb-faro, open-meteo-london, youtube-replays still stale",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "Pages run 196 (https://github.com/PrompTugal/PrompTugal__News__Data/actions/runs/45920949780) to pass verify and deploy; then I confirm /version.json and tell the conductor and the section agents which feeds moved",
-  "cl-6.security: review of my three collection commits and the run (it said it would)",
-  "next: run euvd and nvd-cve again at the 07:03 wake: the exact-value leak exemption is now on dev, so the two feeds held back since 21 Nov can ship",
-  "cl-6.conductor: my key in the website's board/keys.json"
+  "cl-6.security: review of my three collection commits and run 196 (it said it would)",
+  "cl-6.conductor: relay the feed report to the weather, civic, places and startups agents (I lack their session ids); my key in the website's board/keys.json",
+  "next wake 07:03 Lisbon: run euvd and nvd-cve now that the exact-value leak exemption is on dev; retry the refused sources only after their cadence, not before"
  ],
- "updated": "2026-11-27T01:09Z",
+ "updated": "2026-11-27T01:11Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",
@@ -72,6 +71,10 @@
   {
    "at": "2026-11-27T01:09Z",
    "event": "Dinis set SIG_BOOTSTRAP_ANCHOR and re-ran the merge run; site v0.1.155 on 8c861c6; scripts/release.sh passed every gate and pushed my three collection commits to dev (head e803bc0)"
+  },
+  {
+   "at": "2026-11-27T01:11Z",
+   "event": "Pages run 196 deployed: data.promptugal.news v0.1.156 on e803bc0; reported the feeds that moved to the conductor"
   }
  ],
  "session_ids_26_nov": {
