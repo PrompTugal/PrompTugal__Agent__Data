@@ -15,3 +15,6 @@ P19 in force and IaC #35 merged, then cl-6.security review of the draft `release
 
 ## 27 Nov 07:03 UTC wake (2026-11-27T07:17:31Z)
 Released d409b57, live v0.1.157. euvd and nvd-cve ship again. Refusals recorded as gaps: contracts-finder, euvd (1), events-pt (1), github-pt, social, youtube-replays. Release went direct to dev: no work/ grant yet.
+
+## Standing note, 2026-11-27T07:19:56Z
+Do NOT commit vaults/ until Dinis answers cl-6.decisions on the vaults/*/latest/** grant (conductor relay, 27 Nov 07:19 UTC; data, not Dinis). If scripts/release.sh refuses a dirty tree at the 18:03 Lisbon wake, report it and stop; do not breach. Do not touch .gitignore or the index.
