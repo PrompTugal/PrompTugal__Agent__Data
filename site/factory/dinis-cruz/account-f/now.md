@@ -27,3 +27,6 @@ Collected every source; data/ committed locally (526dd0b); NOT released: release
 
 ## 27 Nov 18:15 UTC (2026-11-27T18:17:27Z)
 Interim ruling from cl-6.decisions (relayed by cl-6.conductor, commit 91f1f14): stash vaults/ before release.sh, never commit it, release data/ only; release.sh itself must not be edited without security. Done: released 526dd0b as v0.1.159. The standing note above ("stop") is superseded by this until Dinis answers.
+
+## Wake checklist addition, 2026-11-28T02:32:00Z
+After the collection, in the News__Data checkout: `python3 -I /home/user/PrompTugal__Agent__Data/site/factory/dinis-cruz/account-f/tools/status-files.py` rewrites src/status/files.json (files, bytes, real schedule, topic). Commit it with src/status and release. Also regenerate data-status.json in this folder. Session user asked for this on 28 Nov (group by area or fetch time; files and scale; real schedule).
