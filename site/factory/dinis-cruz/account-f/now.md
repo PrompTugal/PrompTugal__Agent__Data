@@ -36,3 +36,6 @@ Also run `python3 -I /home/user/PrompTugal__Agent__Data/site/factory/dinis-cruz/
 
 ## 28 Nov 07:03 UTC wake (2026-11-28T07:25:19Z)
 Released 23d7b70 as v0.1.172 (29 sources). Only social and youtube-replays refuse (403). Set vaults/ and a new untracked discovery/claims/past/silves.json aside (outside my grant) so release.sh could run; neither is committed.
+
+## 28 Nov 07:3x UTC (2026-11-28T07:27:59Z)
+Fixed my health files: problems lists only what failed in the last run (earlier_failures keeps older ones), so IPMA pages are Healthy again. Released 7b75146 as v0.1.173. status-health.py: problems/earlier_failures; status-summary.py regenerates data-status.json.

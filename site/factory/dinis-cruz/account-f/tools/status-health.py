@@ -96,7 +96,10 @@ for sid in ids:
         for x in r['reads']:
             s = seen[x['name']]; s['runs'] += 1; s['url'] = x['url']
             if not (x.get('status') in (200, 201) or x.get('no_rules') or (x.get('status') == 404 and 'robots' in x['name'].lower())): s['bad'] += 1; s['status'].add(x.get('status'))
-    problems = [{'request': k, 'url': clean(v['url']), 'status': sorted(v['status'], key=str), 'plain': MEANING.get(sorted(v['status'], key=str)[0], 'failed'), 'failed_in': f"{v['bad']} of {v['runs']} runs kept"} for k, v in seen.items() if v['bad']]
+    allp = [{'request': k, 'url': clean(v['url']), 'status': sorted(v['status'], key=str), 'plain': MEANING.get(sorted(v['status'], key=str)[0], 'failed'), 'failed_in': f"{v['bad']} of {v['runs']} runs kept"} for k, v in seen.items() if v['bad']]
+    cur = {x['name'] for x in last['reads'] if not (x.get('status') in (200, 201) or x.get('no_rules') or (x.get('status') == 404 and 'robots' in x['name'].lower()))}
+    problems = [x for x in allp if x['request'] in cur]   # failing in the last run: what is wrong now
+    earlier = [x for x in allp if x['request'] not in cur]   # failed in an older run, read fine in the last
     cm = commits_for(rp)   # a collection commit each, newest first
     def commit_for(run):
         fin = run.get('finished') or run['at']
@@ -119,7 +122,7 @@ for sid in ids:
       'schedule': {'card_says': (card.get('schedule') or {}).get('cadence'), 'really': 'twice a day (07:03 and 18:03 Lisbon)' if (card.get('schedule') or {}).get('cadence') not in ('daily', 'once') else ('once a day (07:03 Lisbon)' if (card.get('schedule') or {}).get('cadence') == 'daily' else 'once, never refreshed')},
       'last_run': {'at': last['at'], 'ok': last['ok'], 'failed': last['failed'],
         'requests': [{'name': x['name'], 'url': clean(x['url']), 'status': x.get('status'), 'meaning': meaning(x), 'bytes': x.get('bytes'), 'changed': x.get('changed')} for x in last['reads']]},
-      'problems': problems,
+      'problems': problems, 'earlier_failures': earlier,
       'runs': rows,
       'copies': {'files_in_git_data': nd, 'bytes_in_git_data': bd, 'files_in_vault_working_copy': nv, 'bytes_in_vault_working_copy': bv, 'dated_copies_in_vault': dated,
         'where': {'api_latest': f'https://data.promptugal.news/api/v1/{sid}/latest.json', 'api_reads': f'https://data.promptugal.news/api/v1/{sid}/reads.json', 'source_page': f'https://data.promptugal.news/sources/{sid}/', 'git': f'{REPO}/tree/dev/data/{sid}'},
