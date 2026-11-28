@@ -46,6 +46,39 @@ def advice(card, runs):
     else: line = f'The data changed on {ch} of {n} reads over {days:.0f} days, about {per_day} times a day: twice a day is more than needed, once a day would lose little.'
     return {'line': line, 'basis': f'suggestion derived from {n} runs in data/<id>/reads.json (a run counts as changed when any request returned different bytes than the run before); the source\'s own cadence on the card is {cad}; runs before 21 Nov were hourly', 'runs_with_change': ch, 'runs_kept': n, 'days_covered': round(days, 1) if days else None, 'changes_per_day': per_day}
 SCHEDULE_TIMES = {'tz': 'Europe/Lisbon', 'times_local': ['07:03', '18:03'], 'note': 'Lisbon is UTC+0 from late October to late March, so these are also 07:03 and 18:03 UTC then; one hour earlier in UTC in summer.', 'runs_per_day': 2}
+HELD = {  # sid: (list key in latest.json or None, counts key or None, what one item is, the item's date field or None)
+ 'adsb-faro': ('airline', None, 'airline flights', None), 'base-gov-pt': (None, 'contracts', 'public contracts', None),
+ 'cams': ('cameras', None, 'cameras', 'checked_at'), 'carbon-intensity-london': ('forecast', None, 'half-hour forecast points', 'from'),
+ 'cisa-kev': ('vulnerabilities', None, 'known exploited vulnerabilities', 'dateAdded'), 'contracts-finder': ('notices', None, 'procurement notices', 'published'),
+ 'ea-flood': ('stations', None, 'flood stations', None), 'ea-thames-tide': ('gauges', None, 'tidal gauges', None),
+ 'enisa-pubs': ('publications', None, 'publications', 'date'), 'eurostat-tourism': ('rows', None, 'figures', None),
+ 'euvd': ('vulnerabilities', None, 'vulnerabilities', 'published'), 'events-pt': (None, 'events', 'events', None),
+ 'github-pt': ('orgs', None, 'organisations', None), 'ipma-city-forecasts': ('cities', None, 'cities', 'updated'),
+ 'ipma-fire-risk': ('municipalities', None, 'municipalities', None), 'ipma-observations': ('stations', None, 'weather stations', None),
+ 'ipma-sea': ('coasts', None, 'coastal places', None), 'ipma-uv': ('places', None, 'places', None), 'ipma-warnings': (None, 'areas', 'warning areas', None),
+ 'meteoalarm-pt': ('messages', None, 'warning messages', 'sent_utc'), 'nvd-cve': ('cves', None, 'CVEs', 'published'), 'nvd-kev': ('cves', None, 'CVEs', 'published'),
+ 'open-meteo-london': ('hourly', None, 'hourly forecast points', 'time'), 'social': ('posts', None, 'posts', 'posted_at'),
+ 'storm-charles-archive': ('files', None, 'files', None), 'tfl-bikepoint': ('docks', None, 'cycle docks', None), 'tfl-jamcams': ('cameras', None, 'traffic cameras', 'modified'),
+ 'tfl-road-disruptions': ('disruptions', None, 'road disruptions', 'updated'), 'tfl-status': ('lines', None, 'lines', None), 'youtube-replays': ('videos', None, 'videos', 'published_at')}
+def held(sid):
+    """What the source's latest file holds: how many items, of what, the span of their dates and a count per day. From data/<id>/latest.json."""
+    try: d = json.load(open(f'data/{sid}/latest.json'))
+    except Exception: return None
+    lk, ck, noun, df = HELD.get(sid, (None, None, 'items', None))
+    items = None; dates = []
+    if lk and isinstance(d.get(lk), list):
+        lst = d[lk]; items = len(lst)
+        if df:
+            for x in lst:
+                v = x.get(df) if isinstance(x, dict) else None
+                if isinstance(v, str) and len(v) >= 10 and v[4] == '-' and v[7] == '-': dates.append(v[:10])
+    elif ck and isinstance((d.get('counts') or {}).get(ck), int): items = d['counts'][ck]
+    per = collections.Counter(dates)
+    days = sorted(per.items())[-60:]
+    return {'items': items, 'noun': noun, 'earliest': min(dates) if dates else None, 'latest': max(dates) if dates else None,
+            'date_field': df if dates else None, 'per_day': [{'date': a, 'count': b} for a, b in days],
+            'from': f'data/{sid}/latest.json' + (f' list "{lk}"' if lk else f' counts.{ck}'),
+            'note': 'Dates are the items\' own dates (forecast sources hold future dates). per_day lists up to the 60 newest days. null where the items carry no date.'}
 ids = sys.argv[1:] or sorted(d for d in os.listdir('data') if os.path.exists(f'data/{d}/reads.json'))
 for sid in ids:
     rp = f'data/{sid}/reads.json'
@@ -87,7 +120,7 @@ for sid in ids:
       'copies': {'files_in_git_data': nd, 'bytes_in_git_data': bd, 'files_in_vault_working_copy': nv, 'bytes_in_vault_working_copy': bv, 'dated_copies_in_vault': dated,
         'where': {'api_latest': f'https://data.promptugal.news/api/v1/{sid}/latest.json', 'api_reads': f'https://data.promptugal.news/api/v1/{sid}/reads.json', 'source_page': f'https://data.promptugal.news/sources/{sid}/', 'git': f'{REPO}/tree/dev/data/{sid}'},
         'tracked_in_git_vaults': tracked, 'note': f'collect/lib.mjs says vaults/ is meant to stay out of git, but {tracked} files of this source are tracked in git today (earlier commits); the sgit vault holds the full history. Dinis has not yet ruled on the vaults/ question.'},
-      'cadence_advice': advice(card, runs), 'schedule_times': SCHEDULE_TIMES,
+      'held': held(sid), 'cadence_advice': advice(card, runs), 'schedule_times': SCHEDULE_TIMES,
       'api_spec': API_SPEC.get(sid), 'api_docs': API_DOCS.get(sid),
       'own_page_copy': None, 'own_page_copy_note': 'not taken: a copy or screenshot of the publisher\'s page needs a rights ruling from cl-6.rights; source_home links to the page itself',
       'source_home': card.get('source_home')}
