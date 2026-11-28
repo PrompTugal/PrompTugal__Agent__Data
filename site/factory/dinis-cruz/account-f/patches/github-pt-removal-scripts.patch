@@ -1,0 +1,52 @@
+diff --git a/scripts/build/consolidated.mjs b/scripts/build/consolidated.mjs
+index c5109bc..f220d0c 100644
+--- a/scripts/build/consolidated.mjs
++++ b/scripts/build/consolidated.mjs
+@@ -8,13 +8,13 @@ import { join } from 'node:path';
+ import { gzipSync } from 'node:zlib';
+ import { writeJson, OUT, SITE } from './lib.mjs';
+ 
+-const CYBER = new Set(['cisa-kev', 'nvd-cve', 'nvd-kev', 'euvd', 'enisa-pubs', 'github-pt']);
++const CYBER = new Set(['cisa-kev', 'nvd-cve', 'nvd-kev', 'euvd', 'enisa-pubs']);
+ const SEPARATE = new Set(['base-gov-pt', 'storm-charles-archive']);   // large or fixed: read from their own files
+ const SKIP_KEY = k => /history/i.test(k) || k === 'hourly_cache';
+ const GROUPS = {
+   london: { title: 'London', about: 'Every London source: TfL line status, cycle hire, road disruptions and traffic cameras; the Environment Agency\'s flood warnings and the tidal Thames; the London forecast; the carbon intensity of London\'s electricity; and London public bodies\' contracts.', pick: c => c.region === 'london' },
+   portugal: { title: 'Portugal', about: 'Portugal\'s weather, sea, fire risk and warnings (IPMA, MeteoAlarm), events, cameras, tourism, social signals and flights around Faro. Public contracts (base-gov-pt) and the Storm archive are in their own files.', pick: c => c.region === 'portugal' && !CYBER.has(c.id) && !SEPARATE.has(c.id) },
+-  cyber: { title: 'Cyber', about: 'Vulnerabilities and advisories: CISA KEV, NVD (the last 24 hours and every KEV entry), ENISA\'s EUVD and publications, and Portuguese organisations\' code on GitHub.', pick: c => CYBER.has(c.id) },
++  cyber: { title: 'Cyber', about: 'Vulnerabilities and advisories: CISA KEV, NVD (the last 24 hours and every KEV entry), ENISA\'s EUVD and publications.', pick: c => CYBER.has(c.id) },
+ };
+ 
+ export function buildConsolidated(sources, builtAt) {
+diff --git a/scripts/build/licence.mjs b/scripts/build/licence.mjs
+index 0529c8a..ae81dbc 100644
+--- a/scripts/build/licence.mjs
++++ b/scripts/build/licence.mjs
+@@ -17,7 +17,6 @@ const BY_SOURCE = {
+   'meteoalarm-pt': { ...terms('https://www.meteoalarm.org/en/live/page/terms-and-conditions', 'MeteoAlarm (EUMETNET), for IPMA'), commercial_use: 'unclear', commercial_note: 'Terms page needs JavaScript; not read.' },
+   'storm-charles-archive': { name: 'Apache-2.0', url: 'https://www.apache.org/licenses/LICENSE-2.0', holder: 'PrompTugal (the Storm Charles site)', commercial_use: 'allowed', note: 'The Storm site\'s own data; quoted sources keep their own terms.' },
+   'social': { ...terms('https://bsky.social/about/support/tos', 'each post\'s author (an organisation)'), commercial_use: 'per item', commercial_note: 'Links and metadata only; each post stays its author\'s.', note: 'Links and metadata only; each post keeps its own license field (the platform\'s terms).' },
+-  'github-pt': { commercial_use: 'per item', ...terms('https://docs.github.com/en/site-policy/github-terms/github-terms-of-service#h-api-terms', 'each repository\'s organisation', 'Each repository and release carries its own license field: the repository\'s declared licence (SPDX), or a link to the repository, whose terms apply.') },
+   'cisa-kev': { name: 'CC0 1.0', url: 'https://github.com/cisagov/kev-data/blob/develop/LICENSE', holder: 'CISA', commercial_use: 'allowed', note: 'No CISA logo or DHS seal; no endorsement implied.' },
+   'nvd-cve': { name: 'NVD terms of use', url: 'https://nvd.nist.gov/developers/terms-of-use', holder: 'NIST, National Vulnerability Database', commercial_use: 'allowed', note: 'Show: "This product uses the NVD API but is not endorsed or certified by the NVD." Totals are ours, not NVD\'s.' },
+   'nvd-kev': { name: 'NVD terms of use', url: 'https://nvd.nist.gov/developers/terms-of-use', holder: 'NIST, National Vulnerability Database', commercial_use: 'allowed', note: 'Show: "This product uses the NVD API but is not endorsed or certified by the NVD." Totals are ours, not NVD\'s.' },
+diff --git a/scripts/build/preview.mjs b/scripts/build/preview.mjs
+index 88d5b34..b594d99 100644
+--- a/scripts/build/preview.mjs
++++ b/scripts/build/preview.mjs
+@@ -8,14 +8,13 @@ const n = v => Number.isFinite(v) ? v.toLocaleString('en-GB') : 'not read';
+ 
+ export function buildPreview({ sources, builtAt }) {
+   const L = id => (sources.find(s => s.id === id) || {}).latest || null;
+-  const cams = L('cams'), nvd = L('nvd-cve'), kev = L('cisa-kev'), base = L('base-gov-pt'), gh = L('github-pt');
++  const cams = L('cams'), nvd = L('nvd-cve'), kev = L('cisa-kev'), base = L('base-gov-pt');
+   const read = sources.filter(s => s.latest && s.latest.read_at).length;
+   const figures = [
+     { label: 'sources read', value: read, of: `of ${sources.length}`, from: '/api/v1/index.json' },
+     { label: 'public contracts, 90 days', value: base && base.counts ? base.counts.contracts : NaN, of: base && base.counts ? `${base.counts.places} places` : '', from: '/api/v1/base-gov-pt/latest.json' },
+     { label: 'public cameras', value: cams && cams.counts ? cams.counts.cameras : NaN, of: cams && cams.counts ? `${cams.counts.up} of ${cams.counts.cameras - (cams.counts.not_checked || 0)} checked are up` : '', from: '/api/v1/cams/latest.json' },
+     { label: 'new CVEs, 24 hours', value: nvd && nvd.counts ? nvd.counts.new_last_24h : NaN, of: kev && kev.counts ? `${n(kev.counts.vulnerabilities)} exploited (CISA)` : '', from: '/api/v1/nvd-cve/latest.json' },
+-    { label: 'Portuguese code repositories', value: gh && gh.counts ? gh.counts.repos : NaN, of: gh && gh.counts ? `${gh.counts.orgs} organisations` : '', from: '/api/v1/github-pt/latest.json' },
+   ];
+   const W = 1200, H = 630, at = builtAt.slice(0, 16).replace('T', ' ') + ' UTC';
+   const cell = (f, i) => { const col = i % 3, row = Math.floor(i / 3), x = 60 + col * 370, y = 200 + row * 190;

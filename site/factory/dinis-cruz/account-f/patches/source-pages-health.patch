@@ -1,5 +1,5 @@
 diff --git a/scripts/build/api.mjs b/scripts/build/api.mjs
-index 79caf4e..177c31a 100644
+index 79caf4e..d962a8d 100644
 --- a/scripts/build/api.mjs
 +++ b/scripts/build/api.mjs
 @@ -1,5 +1,6 @@
@@ -22,12 +22,20 @@ index 79caf4e..177c31a 100644
        [`/api/v1/${s.id}/card.json`]: jsonOp({ id: opId(`${s.id}_card`), summary: `${s.card.title}: the card`, description: 'Who publishes the source, its reuse terms, the schedule, who owns it, what runs by code, by agents and by people, and the vault.', tag: s.id, data: s.card }),
        [`/api/v1/${s.id}/openapi.json`]: textOp(opId(`${s.id}_openapi`), `${s.card.title}: this document`, 'application/json', s.id),
      };
+@@ -148,6 +152,7 @@ For the sites and agents that read data.promptugal.news as a source (the other P
+ 
+ - **Addresses stay.** \`api/v1/index.json\`, \`api/v1/openapi.json\` and every \`api/v1/<source>/{latest,reads,card,openapi}.json\` listed in the catalogue keep their address for the life of v1. \`api/v1/storm-charles-archive/manifest.json\` and \`api/v1/by-place/now/<place>.json\` likewise. A file may be added; a listed file is not removed or renamed in v1.
+ - **Fields stay.** In \`index.json\`: \`about\`, \`api\`, \`contract\`, \`version\`, \`built_at\`, \`site\`, \`sources[]\` (\`id\`, \`title\`, \`publisher\`, \`cadence\`, \`read_at\`, \`latest\`, \`reads\`, \`card\`, \`openapi\`, \`page\`, \`vault_id\`, \`terms_summary\`) and \`by_place\`. Fields may be added; none is removed, renamed or changes type in v1. The same holds for the top-level fields of each data file once it is listed.
++- **\`api/v1/<source>/health.json\`** is new (28 Nov 2026): each request of the last run, the requests that keep failing, the recent runs with commit links, and what is held. Its shape may still change; it is not yet part of the promise above.
+ - **Every value** carries its source and the UTC time it was read (\`provenance\` in each latest.json). Times are as the source gives them; where a field says UTC it is UTC.
+ - **\`version\`** is the site's release (one per push); it changes many times a day and is not the API's version. The API's version is \`api\` ("v1") and the path.
+ - **A source's own terms** travel with its data (\`terms_summary\` here, \`terms\` in the card). They are not ours to relax: read them before you reuse a value.
 diff --git a/scripts/build/health.mjs b/scripts/build/health.mjs
 new file mode 100644
-index 0000000..4b766a3
+index 0000000..40abfd9
 --- /dev/null
 +++ b/scripts/build/health.mjs
-@@ -0,0 +1,100 @@
+@@ -0,0 +1,128 @@
 +// The health sections of a source page, built only from data/<id>/health.json (written by cl-6.data's wake): a badge, what is held,
 +// when it is collected, what is wrong, the last run request by request, the run history with commit and compare links, whether it
 +// needs calling more often, the requests across runs, and where it is kept. Design: cl-6.designer (data-source-pages, 28 Nov 2026).
@@ -90,8 +98,8 @@ index 0000000..4b766a3
 +  return `<details><summary>The ${d.length} requests of this run</summary><ul class="hl-reqs">${d.map(q => `<li><code>${esc(q.name)}</code> <span class="hl-m">${esc(q.status)} &middot; ${bytes(q.bytes)}${q.sha256_prefix ? ' &middot; ' + esc(q.sha256_prefix) : ''} &middot; ${q.changed === true ? 'changed' : 'same'}</span></li>`).join('')}</ul></details>`;
 +}
 +function runLi(r) {
-+  const cmp = r.compare_with_previous_run_url ? ` &middot; <a href="${esc(r.compare_with_previous_run_url)}">what changed since the run before</a>` : ' &middot; oldest run kept, nothing to compare with';
-+  return `<li><div><b>${esc(when(r.at))}</b> &middot; ${r.ok} read, ${r.failed} failed &middot; ${r.changed_requests.length} changed</div><div class="hl-m">${r.commit_url ? `<a href="${esc(r.commit_url)}">commit ${esc(r.commit)}</a>` : 'no commit found'}${cmp}</div>${runDetail(r)}</li>`;
++  const cmp = r.compare_with_previous_run_url ? ` &middot; <a href="${esc(r.compare_with_previous_run_url)}" target="_blank" rel="noopener">what changed since the run before</a>` : ' &middot; oldest run kept, nothing to compare with';
++  return `<li><div><b>${esc(when(r.at))}</b> &middot; ${r.ok} read, ${r.failed} failed &middot; ${r.changed_requests.length} changed</div><div class="hl-m">${r.commit_url ? `<a href="${esc(r.commit_url)}" target="_blank" rel="noopener">commit ${esc(r.commit)}</a>` : 'no commit found'}${cmp}</div>${runDetail(r)}</li>`;
 +}
 +function history(H) {
 +  const runs = H.runs, changed = runs.filter(r => r.changed_requests.length).length;
@@ -124,9 +132,37 @@ index 0000000..4b766a3
 +    p(c.note), p(H.own_page_copy_note || ''), { t: 'ul', items: links }];
 +}
 +
++
++/** A plain collapsible tree of the source's latest.json (details and summary, no script). Shortened: a node budget, the first five items of a list,
++ *  values cut at 120 characters; the file has everything. Em dashes in values are shown as hyphens (the site writes none). */
++function jsonTree(L, id) {
++  let budget = 350;
++  const cut = v => { const t = String(v).replace(/\u2014/g, '-'); return t.length > 120 ? t.slice(0, 120) + '...' : t; };
++  const node = (k, v, depth) => {
++    if (budget-- <= 0) return '';
++    const key = `<code>${esc(k)}</code>`;
++    if (v === null || typeof v !== 'object') return `<li>${key}: <span class="hl-v">${esc(cut(v))}</span></li>`;
++    const arr = Array.isArray(v), all = arr ? v.length : Object.keys(v).length, keys = arr ? v.slice(0, 5).map((_, i) => i) : Object.keys(v).slice(0, 40);
++    const label = `<span class="hl-m">${all} ${arr ? 'items' : 'fields'}</span>`;
++    if (depth >= 4) return `<li>${key} ${label}, in the file</li>`;
++    const kids = keys.map(i => node(arr ? `[${i}]` : i, v[i], depth + 1)).join('');
++    const more = all > keys.length ? `<li class="hl-m">... ${all - keys.length} more, in the file</li>` : '';
++    return `<li><details${depth === 0 ? ' open' : ''}><summary>${key} ${label}</summary><ul>${kids}${more}</ul></details></li>`;
++  };
++  return `<ul class="hl-tree">${node('latest.json', L, 0)}</ul>`;
++}
++function loadLatest(id) {
++  const f = `data/${id}/latest.json`;
++  try { return existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null; } catch { return null; }
++}
++function asJson(H) {
++  const L = loadLatest(H.source); if (!L) return [];
++  return [h('The data, as JSON'), raw(`${jsonTree(L, H.source)}<p class="hl-note">A shortened tree of <a href="${esc(H.copies.where.api_latest)}">latest.json</a>: the first five items of each list, values cut at 120 characters. The file has everything.</p>`, `A shortened tree of [latest.json](${H.copies.where.api_latest}).`)];
++}
++
 +/** The sections, in the designer's order, after the page's first paragraph. */
 +export function healthSections(H) {
-+  return [...held(H), ...schedule(H), ...wrong(H), ...lastRun(H), ...history(H), ...cadence(H), ...matrix(H), ...kept(H)].filter(b => !(b.t === 'p' && !b.x));
++  return [...held(H), ...schedule(H), ...wrong(H), ...lastRun(H), ...history(H), ...cadence(H), ...matrix(H), ...kept(H), ...asJson(H)].filter(b => !(b.t === 'p' && !b.x));
 +}
 diff --git a/scripts/build/pages.mjs b/scripts/build/pages.mjs
 index 290bf80..8e43504 100644
@@ -161,10 +197,10 @@ index 290bf80..8e43504 100644
    // ---- API ----
 diff --git a/src/assets/health.css b/src/assets/health.css
 new file mode 100644
-index 0000000..e4ec1e9
+index 0000000..5993aad
 --- /dev/null
 +++ b/src/assets/health.css
-@@ -0,0 +1,16 @@
+@@ -0,0 +1,18 @@
 +/* The health sections of a source page (cl-6.designer's design, built by cl-6.data, 28 Nov 2026). Colours come from site.css tokens. */
 +.hl-back { font: .8rem var(--font-meta, monospace); margin: .2rem 0 0; }
 +.hl-badge { display: inline-block; margin: .2rem 0; padding: 2px 12px; border: 2px solid currentColor; border-radius: 4px; font: 700 .85rem var(--font-meta, monospace); }
@@ -181,3 +217,5 @@ index 0000000..e4ec1e9
 +.hl-mx { width: auto; font: .75rem var(--font-meta, monospace); } .hl-mx th { white-space: nowrap; position: sticky; left: 0; background: var(--paper); text-transform: none; letter-spacing: 0; }
 +.hl-mx td { padding: 2px 4px; text-align: center; } .hl-mx td.hl-x { color: var(--red); }
 +details > summary { cursor: pointer; font: 600 .8rem var(--font-meta, monospace); margin: .4rem 0; }
++.hl-tree, .hl-tree ul { list-style: none; margin: 0; padding-left: 1rem; font: .8rem/1.5 var(--font-meta, monospace); } .hl-tree { padding-left: 0; }
++.hl-tree li { overflow-wrap: anywhere; } .hl-v { color: var(--muted); }
