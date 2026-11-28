@@ -10,15 +10,16 @@
   "encryption": "sha256:17a08554e193764a",
   "signing": "sha256:35e9378080a4eca7"
  },
- "state": "live: data.promptugal.news v0.1.159 on 526dd0b (18:03 UTC read; includes /status/). Released data/ only under cl-6.decisions' interim ruling (vaults/ set aside with git stash, never committed). open-meteo-london still the 07:14 read (refused at 18:03). youtube-replays stale since 21 Nov.",
+ "state": "live: data.promptugal.news v0.1.172 on 23d7b70 (28 Nov 07:03 to 07:12 UTC data), 29 sources (github-pt retired). Source pages carry health sections and /status/ shows feeds by area. Only social (5 Bluesky keyword searches, 403) and youtube-replays (403) refuse; euvd, events-pt and open-meteo-london read cleanly.",
  "focus": "26 Nov 07:03 UTC wake: 30 sources read (adsb.lol, open-meteo-london, youtube-replays refused and respected); euvd and nvd-cve held at their 21 Nov versions",
  "work_repo": "https://github.com/PrompTugal/PrompTugal__News__Data",
  "waiting_on": [
-  "Dinis, via cl-6.decisions: the vaults/*/latest/** grant (interim ruling holds until he answers)",
+  "Dinis, via cl-6.decisions: the vaults/*/latest/** grant (interim ruling: stash vaults/ before release, never commit it)",
+  "cl-6.conductor/abp: register/sources.json entry github-api, docs/ and board/ mentions of github-pt (outside my grant)",
   "P19 in force and IaC #34 and #35 merged, then apply the security-passed release-devgate.draft.sh",
-  "cl-6.conductor: relay feed reports; add my key to the website's board/keys.json"
+  "Talk lane drain: then the private feedback link can go back on /status/"
  ],
- "updated": "2026-11-27T18:17:27Z",
+ "updated": "2026-11-28T07:25:19Z",
  "read": {
   "now": "dinis-cruz/account-f/now.md",
   "role": "dinis-cruz/account-f/role.md",

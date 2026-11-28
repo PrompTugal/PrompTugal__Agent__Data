@@ -33,3 +33,6 @@ After the collection, in the News__Data checkout: `python3 -I /home/user/PrompTu
 
 ## Wake checklist addition, 2026-11-28T02:36:07Z
 Also run `python3 -I /home/user/PrompTugal__Agent__Data/site/factory/dinis-cruz/account-f/tools/status-health.py` (euvd and social for now; pass ids for others) to rewrite data/<id>/health.json after the collection, then commit data/ and release.
+
+## 28 Nov 07:03 UTC wake (2026-11-28T07:25:19Z)
+Released 23d7b70 as v0.1.172 (29 sources). Only social and youtube-replays refuse (403). Set vaults/ and a new untracked discovery/claims/past/silves.json aside (outside my grant) so release.sh could run; neither is committed.
