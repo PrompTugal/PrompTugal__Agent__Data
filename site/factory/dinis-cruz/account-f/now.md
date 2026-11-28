@@ -30,3 +30,6 @@ Interim ruling from cl-6.decisions (relayed by cl-6.conductor, commit 91f1f14): 
 
 ## Wake checklist addition, 2026-11-28T02:32:00Z
 After the collection, in the News__Data checkout: `python3 -I /home/user/PrompTugal__Agent__Data/site/factory/dinis-cruz/account-f/tools/status-files.py` rewrites src/status/files.json (files, bytes, real schedule, topic). Commit it with src/status and release. Also regenerate data-status.json in this folder. Session user asked for this on 28 Nov (group by area or fetch time; files and scale; real schedule).
+
+## Wake checklist addition, 2026-11-28T02:36:07Z
+Also run `python3 -I /home/user/PrompTugal__Agent__Data/site/factory/dinis-cruz/account-f/tools/status-health.py` (euvd and social for now; pass ids for others) to rewrite data/<id>/health.json after the collection, then commit data/ and release.
