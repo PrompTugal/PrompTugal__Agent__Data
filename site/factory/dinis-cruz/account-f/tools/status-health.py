@@ -6,6 +6,10 @@ and git. No network. Run from the repo root after the collection; data/** is in 
 import json, os, subprocess, sys, datetime, collections
 REPO = 'https://github.com/PrompTugal/PrompTugal__News__Data'
 MEANING = {200: 'read', 201: 'read', 404: 'not found', 403: 'refused (forbidden)', 429: 'refused (rate limited)', 401: 'refused (needs sign-in)', 'error': 'could not connect or timed out', 'too-big': 'answer larger than the size cap'}
+import re
+def clean(u):
+    """Redact a credential in a request address before it reaches a public file (cl-6.security, 28 Nov 2026)."""
+    return re.sub(r'([?&](?:key|api_?key|token|access_token|secret|sig|signature|password|pwd)=)[^&#]*', r'\1REDACTED', u or '', flags=re.I)
 def sh(*a): return subprocess.run(a, capture_output=True, text=True).stdout
 def walk(d):
     n = b = 0
@@ -92,7 +96,7 @@ for sid in ids:
         for x in r['reads']:
             s = seen[x['name']]; s['runs'] += 1; s['url'] = x['url']
             if not (x.get('status') in (200, 201) or x.get('no_rules') or (x.get('status') == 404 and 'robots' in x['name'].lower())): s['bad'] += 1; s['status'].add(x.get('status'))
-    problems = [{'request': k, 'url': v['url'], 'status': sorted(v['status'], key=str), 'plain': MEANING.get(sorted(v['status'], key=str)[0], 'failed'), 'failed_in': f"{v['bad']} of {v['runs']} runs kept"} for k, v in seen.items() if v['bad']]
+    problems = [{'request': k, 'url': clean(v['url']), 'status': sorted(v['status'], key=str), 'plain': MEANING.get(sorted(v['status'], key=str)[0], 'failed'), 'failed_in': f"{v['bad']} of {v['runs']} runs kept"} for k, v in seen.items() if v['bad']]
     cm = commits_for(rp)   # a collection commit each, newest first
     def commit_for(run):
         fin = run.get('finished') or run['at']
@@ -114,7 +118,7 @@ for sid in ids:
       'about': 'Why this source does or does not have a problem, from its own request log (data/<id>/reads.json) and git. Regenerated at each wake.',
       'schedule': {'card_says': (card.get('schedule') or {}).get('cadence'), 'really': 'twice a day (07:03 and 18:03 Lisbon)' if (card.get('schedule') or {}).get('cadence') not in ('daily', 'once') else ('once a day (07:03 Lisbon)' if (card.get('schedule') or {}).get('cadence') == 'daily' else 'once, never refreshed')},
       'last_run': {'at': last['at'], 'ok': last['ok'], 'failed': last['failed'],
-        'requests': [{'name': x['name'], 'url': x['url'], 'status': x.get('status'), 'meaning': meaning(x), 'bytes': x.get('bytes'), 'changed': x.get('changed')} for x in last['reads']]},
+        'requests': [{'name': x['name'], 'url': clean(x['url']), 'status': x.get('status'), 'meaning': meaning(x), 'bytes': x.get('bytes'), 'changed': x.get('changed')} for x in last['reads']]},
       'problems': problems,
       'runs': rows,
       'copies': {'files_in_git_data': nd, 'bytes_in_git_data': bd, 'files_in_vault_working_copy': nv, 'bytes_in_vault_working_copy': bv, 'dated_copies_in_vault': dated,
