@@ -22,3 +22,8 @@
 - tfl.gov.uk industrial-action page requested again: still 403 challenge. Data unchanged.
 - Slip: this was my second challenged tfl.gov.uk request on 27 Nov (the first was 06:24), against cl-6.maestro's rule of one a day. It is in network-log.jsonl. From the next wake only one a day, at the 06:23 wake.
 - Host read: tfl.gov.uk (403) only.
+
+## 28 Nov 06:24 UTC wake
+- Environment still lists my six hosts; no decision on api.tfl.gov.uk has reached me.
+- tfl.gov.uk industrial-action page, the one request for the day: still 403 challenge. Data unchanged.
+- Host read: tfl.gov.uk (403) only.
