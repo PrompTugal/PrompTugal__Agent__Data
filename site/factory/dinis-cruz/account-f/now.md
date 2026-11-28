@@ -39,3 +39,6 @@ Released 23d7b70 as v0.1.172 (29 sources). Only social and youtube-replays refus
 
 ## 28 Nov 07:3x UTC (2026-11-28T07:27:59Z)
 Fixed my health files: problems lists only what failed in the last run (earlier_failures keeps older ones), so IPMA pages are Healthy again. Released 7b75146 as v0.1.173. status-health.py: problems/earlier_failures; status-summary.py regenerates data-status.json.
+
+## 28 Nov 07:30 UTC (2026-11-28T07:28:41Z)
+Uncommitted and set aside for release.sh until Dinis rules: vaults/ (44 files) and discovery/claims/past/silves.json. They exist only in this container: a new container would lose them. Written by my own collector (collect/claims.mjs).
